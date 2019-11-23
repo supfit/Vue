@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+		<title>example02实例事件</title>
+	</head>
+	<body>
+		<h1>example02实例事件</h1><hr />
+		<div id="app">
+			<p>{{num}}</p>
+			<p><button @click="add()">ADD</button></p>
+		</div>
+		<p><button onclick="reduce()">REDUCE</button></p>
+		<p><button onclick="reduce2()">REDUCE</button></p>
+		<p><button onclick="off()">OFF</button></p>
+	</body>
+	<script type="text/javascript">
+		//创建一个实例
+		var vm=new Vue({
+			el:'#app',
+			data:{
+				num:1
+			},
+			methods:{
+				add:function(){
+					this.num++;
+				}
+			}
+		});
+		//实例方法：在不改变原来核心代码的基础上，增加一个实例
+		//给vm绑定一个on事件，on事件可以多次调用
+		vm.$on('reduce',function(){
+			console.log("reduce...s");
+			this.num--;	
+		});
+		//vm绑定一个once事件
+		vm.$once('reduce2',function(){
+			console.log("once...");
+			this.num--;
+		});
+		//使用原生方法调用reduce
+		function reduce(){
+			vm.$emit('reduce')
+		}
+		function reduce2(){
+			vm.$emit('reduce2')
+		}
+		//关闭事件reduce
+		function off(){
+			vm.$off('reduce')
+		}
+	</script>
+</html>

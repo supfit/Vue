@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<title>component02组件props设置属性</title>
+	</head>
+	<body>
+		<h1>component02组件props设置属性</h1>
+		<hr />
+		<div id="app">
+			{{msg}}
+			<panda here='china' city='sichuan'></panda>
+			<panda v-bind:here='city'></panda>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				msg: 'Helloworld!',
+				city: 'sichuan'
+			},
+			components: {
+				'panda': {
+					template: `<div style='color:red'>panda from {{here}} {{city}}</div>`,
+					props: ['here', 'city', ]
+				}
+			}
+		});
+	</script>
+</html>

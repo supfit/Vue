@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<title>methods方法选项</title>
+	</head>
+	<body>
+		<h1>methods方法选项</h1><hr />
+		<div id="app">
+			<p>{{num}}</p>
+			<button type="button" @click="add(2)">ADD</button>
+			<btn @click.native="add(3)">btn</button>
+		</div>
+		<!-- 通过对象调用的方法,实现需要的方法-->
+		<button onclick="vm.add(5)">外部ADD</button>
+	</body>
+	<script type="text/javascript">
+		//定义btn
+		var btn={
+			template:`
+				<button>组件ADD</button>
+			`
+		}
+		var vm=new Vue({
+			el:'#app',
+			data:{
+				num:1
+			},
+			//注册组件
+			components:{
+				"btn":btn
+			},
+			methods:{
+				//添加方法，参数num2表示每次加几
+				'add':function(num2){
+					 //this.num++;
+					 //this.num+=num2;
+					 if(num2!= ''&& num2!=null){
+						 this.num +=num2;
+					 }else{
+						 this.num++;
+					 }
+				}
+			}
+		});
+	</script>
+</html>

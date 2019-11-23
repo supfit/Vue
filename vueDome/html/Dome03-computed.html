@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<title>computed计算选项</title>
+	</head>
+	<body>
+		<h1>computed计算选项</h1><hr />
+		<div id="app" >
+			<p>{{newPrice}}</p>
+			<ul>
+				<li v-for='news in reverseNewsList'> {{news.title}}------{{news.data}}</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var newsList=[
+			{title:'绿蚁新醅酒，红泥小火炉',data:'2017'},
+			{title:'溪柴火软蛮毡暖，我与狸奴不出门',data:'2018'},
+			{title:'夜阑卧听风吹雨，铁马冰河入梦来',data:'2019'},
+			{title:'秦时明月汉时关，万里长征人未还',data:'2020'}
+		]
+		var vm=new Vue({
+			el:'#app',
+			data:{
+				price:100,
+				newList:newsList
+			},
+			//通过computed修改数据的格式
+			computed:{
+				newPrice:function () {
+					return this.price="￥："+this.price+"元";
+				},
+				reverseNewsList:function () {
+					return this.newList.reverse();
+				}
+			}
+		});
+	</script>
+</html>

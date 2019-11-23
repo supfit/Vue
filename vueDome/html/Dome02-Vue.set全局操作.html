@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<title>Vue.set全局操作</title>
+	</head>
+	<body>
+		<h1>模板</h1><hr />
+		<div id="app">
+			{{count}}
+			<ul>
+				<li v-for="item in arr">{{item}}</li>
+			</ul>
+			<p>
+				<button onclick="add();">Add</button>
+			</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		
+		function add(){
+			//第一种Vue.set(需要改变的对象，需要改变的属性，需要改变的值)
+			// Vue.set(outData,'count',2);
+			// vm.count++;
+			//第三种，原生js
+			//outData.count++;
+			//outData.arr[0]="ddd";
+			Vue.set(vm.arr,1,"eee");
+			}
+		var outData ={
+			count:1,
+			arr:["aaa","bbb","ccc"]
+		}
+		var vm=new Vue({
+			el:'#app',
+			data:outData,
+			
+		});
+	</script>
+</html>

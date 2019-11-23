@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+		<title>example04内置组件</title>
+	</head>
+	<body>
+		<h1>example04内置组件</h1><hr />
+		<div id="app">
+			<tzy>
+				<!-- 传值 -->
+				<span slot="addr">{{tzyData.addr}}</span>
+				<span slot="netName">{{tzyData.netName}}</span>
+				<span slot="skill">{{tzyData.skill}}</span>
+			</tzy>
+		</div>
+		<template id="temp">
+			<!-- 接收 -->
+			<div id="">
+				<p>地址:<slot name="addr"></slot></p>
+				<p>网名:<slot name="netName"></slot></p>
+				<!-- 也可以直接写值，不用传递 -->
+				<!-- <p>网名:<slot>supfit</slot></p> -->
+				<p>技能:<slot name="skill"></slot></p>
+			</div>
+		</template>
+	</body>
+	<script type="text/javascript">
+		//定义一个模板
+		var temp={
+			template:"#temp"
+		}
+		var vm=new Vue({
+			el:'#app',
+			data:{
+				tzyData:{
+					addr:'http://www.baidu.com',
+					netName:'supfit',
+					skill:'唱，跳，rap，篮球'
+				}
+			},
+			//注册组件
+			components:{
+				'tzy':temp
+			}
+		});
+	</script>
+</html>

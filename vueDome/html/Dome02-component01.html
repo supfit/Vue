@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<title>component01初始组件</title>
+	</head>
+	<body>
+		<h1>component01初始组件</h1><hr />
+		<div id="app">
+			{{msg}}
+			<panda></panda>
+			<dog></dog>
+		</div>
+		<div id="app2">
+			{{msg}}
+			<panda></panda>
+			<dog></dog>
+		</div>
+	</body>
+	<script type="text/javascript">
+		//注册一个组件
+		Vue.component('panda',{
+			template:`<h2 style='color:yellow'>我是全局组件</h2>`
+		})
+		var vm=new Vue({
+			el:'#app',
+			data:{
+				msg:'Helloworld!'
+			},
+			components:{
+				'dog':{
+					template:`<div style='color:red'>我是局部组件</div>`
+				}
+			}
+		});
+		var vm2=new Vue({
+			el:'#app2',
+		})
+	</script>
+</html>

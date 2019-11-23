@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+		<title>example02实例方法</title>
+	</head>
+	<body>
+		<h1>example02实例方法</h1><hr />
+		<div id="app">
+			
+		</div>
+		<p><button onclick="destroy()">销毁</button></p>
+		<p><button onclick="reload()">更新</button></p>
+		<p><button onclick="tick()">修改</button></p>
+	</body>
+	<script type="text/javascript">
+		//创建一个实例
+		var tom = Vue.extend({
+			template:`
+				<p>{{message}}</p>
+			`,
+			data:function(){
+				return{
+					message:"hello，I'm tom~~"
+				}
+			},
+			//生命周期
+			mounted:function () {
+				console.log("mounted被创建。。。");
+			},
+			destroyed:function () {
+				console.log("destroyed销毁之后。。。")
+			},
+			updated:function(){
+				console.log("updated更新之后。。。")
+			}	
+		});
+		
+		//将tom元素挂载到id为app的元素上
+		var vm = new tom().$mount("#app");
+		//销毁的方法
+		function destroy(){
+			vm.$destroy();
+		}
+		//更新的方法
+		function reload(){
+			vm.$forceUpdate();
+		}
+		//修改数据
+		function tick(){
+			//修改message的值
+			vm. message="update message content......";
+			//修改数据后进行回调
+			vm.$nextTick(function(){
+				console.log("数据更新完之后，回调这个函数。。。")
+			});
+		}
+	</script>
+</html>

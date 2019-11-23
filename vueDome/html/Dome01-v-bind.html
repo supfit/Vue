@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<title>v-bind</title>
+		<style>
+			.classA{
+				color: aquamarine;
+			}
+			.classB{
+				font-size: 150%;
+			}
+			.classC{
+				font: "arial black";
+			}
+		</style>
+	</head>
+	<body>
+		<h1>v-bind</h1><hr />
+		<div id="app">
+			<p><img v-bind:src="imgSrc" width="400"/></p>
+			<P><a v-bind:href="webUrl">百度</a></P>
+			<P><a :href="webUrl">百度</a></P>
+			<!--绑定CSS-->
+			<p :class="className">1.绑定CSS</p>
+			<p :class="{classA:isOk}">2.绑定CSS中的判断</p>
+			<p :class="[classA,classB,classC]">3.绑定CSS中的数组</p>
+			<p :class="isOk?classA:classB">4.绑定CSS中的三元运算符</p>
+			<p>
+				<input type="checkbox" id="val" v-model="isOk">
+				<label for="val">isOk={{isOk}}</label>
+			</p>
+			<!-- 绑定style属性 -->
+			<p :style="{color:green,fontSize:font}">5.绑定style属性</p>
+			<!-- 对象绑定style属性 -->
+			<p :style="styleObject">6.对象绑定style属性</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm=new Vue({
+			el:'#app',
+			data:{
+				imgSrc:'../img/2B-01.jpg',
+				webUrl:'http://www.baidu.com',
+				className:'classA',
+				isOk:false,
+				classA:'classA',
+				classB:'classB',
+				classC:'classC',
+				font:'30px',
+				green:'green',
+				styleObject:{
+					color:'blue',
+					fontSize:'25px',
+				}
+			}
+		});
+	</script>
+</html>
